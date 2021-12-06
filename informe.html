@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+    
+  <head>
+    <meta charset="utf-8">
+    <title>Informe Examen IIC2026</title>
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" href="styles/informe.css">
+  </head>
+  <body>
+      <h1>Informe Examen</h1>
+
+      <p class=sh1>Diciembre 2021</p>
+
+
+      <h2>Primer nivel: Caracterización de dominio</h2>
+      <h3>Contexto</h3>
+
+      <p>
+        No es ningún misterio que estemos comenzando a experimentar una crisis climática. 
+        Nuestro estilo de vida ha superado los límites del planeta. 
+        La producción mundial de alimentos es responsable de más del 26% de las emisiones de gases de efecto invernadero en todo el mundo.
+        Por esto, es que se decidió realizar el examen en torno a este tema. 
+      </p>
+      <p>
+          El objetivo de la herramienta es que los usuarios puedan visualizar y 
+          comparar las huellas de carbono de los distintos alimentos y el dioxido de carbono emitido en las distintas etapas de producción (mencionadas más abajo).
+      </p>
+
+      <p>
+          Se utilizó el dataset de Kaggle <a href="https://www.kaggle.com/selfvivek/environment-impact-of-food-production">Enviornment Impact of Food Production</a>.
+          El dataset contiene datos sobre la huella de carobono de 43 alimentos. Hay 23 columnas en total de las cuales se utilizan 9, ya que estos atributos permiten 
+          entender de manera general el ánalisis de la huella de carobono de los alimentos. Los atributos seleccionados fueron los siguientes,
+          además se agrega manualmente un atirbuto llamado "Plant_based" que indica si el alimento es compuesto solo por derviados de plantas (es decir, no de animales) o no.
+        </p>
+
+
+<ul>
+<li> 1. Land use change - Kg CO2 - equivalents per kg product: cuantos kg de CO2 son producios en esta etapa de producción por kg de alimento producido</li>
+<li> 2. Animal Feed - Kg CO2 - equivalents per kg product: cuantos kg de CO2 son producios en esta etapa de producción por kg de alimento producido</li>
+<li>3. Farm - Kg CO2 - equivalents per kg product: cuantos kg de CO2 son producios en esta etapa de producción por kg de alimento producido</li>
+<li>4. Processing - Kg CO2 - equivalents per kg product: cuantos kg de CO2 son producios en esta etapa de producción por kg de alimento producido</li>
+<li>5. Transport - Kg CO2 - equivalents per kg product: cuantos kg de CO2 son producios en esta etapa de producción por kg de alimento producido</li>
+<li>6. Packaging - Kg CO2 - equivalents per kg product: cuantos kg de CO2 son producios en esta etapa de producción por kg de alimento producido</li>
+<li>7. Retail - Kg CO2 - equivalents per kg product: cuantos kg de CO2 son producios en esta etapa de producción por kg de alimento producido</li>
+</ul>
+
+
+
+      <h3>Usuario objetivo y tipo de uso</h3>
+      <p>
+        La herramienta estará dirigida a usuarios que no conozcan con profundidad el tema de la huella de carbono de los distintos alimentos. 
+        Son personas que les preocupa la crisis climatica o personas que quieran saber más información sobre el tema, ya sea, 
+        por que están evualuando si cambiar su dieta (por ejemplo, a una vegetariana o vegana) o por qué simplemente les interesa.
+      </p>
+      <p>
+        En cuanto al lenguaje, este trabajo estará enfocado a usuarios que sepan Inglés. 
+        Esto debido a que el dataset estaba en ese idioma y por simplicidad y consistencia se preferió dejar todo en Inglés.
+        Por esto, los textos estarán en Ingles, sin embargo, 
+        la herramienta es intuitiva y se puede utilizar sin dominar perfecto este idioma.
+
+      </p>
+
+      <p>
+        A partir de esta herramienta, se espera que el usuario pueda comparar las distitnas huellas de carbono de distintos alimentos. 
+        Además, podrá ver cuales son las etapas de la cadena de producción de alimentos que más impactan en el medio ambiente.
+        La herramienta es interactiva, el usuario puede seleccionar y filtrar que alimentos quiere ver, puede hacer zoom, drag y hover sobre distintos elementos.
+      </p>
+
+         
+
+      <h2>Segundo nivel: Abstracción de datos y tareas</h2>
+      <h3>Abstracción de tareas</h3>
+      <ul>
+        <li>
+          <span class="mono bold">Primera tarea principal:</span> 
+          <span class=italic>Presentar la cantidad de kg de CO2 emitidos por cada kg de alimento producido (huella de carbono) para distintos alimentos</span>. 
+          El usuario podrá visualizar la huella de carbono de cada alimento.
+        </li>
+        <li>
+            <span class="mono bold">Segunda tarea principal:</span> 
+            <span class=italic>Comparar las huellas de carbono de distintos alimentos</span>. 
+            El usuario podrá realizar comparaciones de las huellas de carbono de distintos alimentos, 
+            puede distinguir si son alimentos en base a plantas o en base a animales y 
+            además puede comparar el dioxido de carbono emitido en las distintas etapas del proceso de producción.
+          </li>
+          <li>
+            <span class="mono bold">Tercera tarea principal:</span> 
+            <span class=italic>Explorar los componentes de cada huella de carbono</span>. 
+            El usuario podrá visualizar la descomposición de la huella de carbono de cada alimento según las distintas etapas de producción.
+            
+          </li>
+
+      </ul>
+
+      <h3>Abstracción de datos</h3>
+
+      <p>
+        A nivel de <span class="bold">datos singulares</span>, se tienen presentes 
+        los siguientes:
+      </p>
+      <ul>
+        <li>
+          <span class="bold">Ítem:</span> Cada fila del datset representa un alimento que está descrito por los distintos atributos que lo componen.
+        </li>
+        <li>
+          <span class="bold">Atributos:</span> Hay distintos atributos. En primer lugar, se encuentran los atributos que representan los kg de Dioxido de carbono emitido en las etapas de producción de los 
+          alimentos (Land use, Animal Feed, Farm, Processing, Transport, Packaging, Retail) por cada kg de alimento producido. 
+          En segundo lugar, se encuentra el total de las emisiones de dioxido de carbono en kg por kg de alimento producido. 
+          En tercer lugar, está el atributo "Plant_based" que indica si el alimento es en base a plantas o por el contrario, en base a animales.
+          
+        </li>
+
+      </ul>
+      <p>
+        Más en detalle, a nivel de <span class="bold">atributos</span>, los presentes en el dataset son:
+      </p>
+      <ol>
+        <li>
+          <span class="bold mono">land_use</span>
+          <div>Representa la cantidad de kg de CO2 emitidos en esta etapa de producción por cada kg de alimento producido.</div>
+          <ul class="atrr">
+            <li>
+              <span class="bold">Ordenado</span>.
+            </li>
+            <li>
+              <span class="bold">Cuantitativo</span>, sus valores cuentan con un orden intrinseco.
+            </li>
+            <li>
+                <span class="bold">Divergente</span>, hay valores negativos (caso nueces o aceite de oliva) y tambien hay valores positivos.
+              </li>
+              <li>
+                <span class="bold">No ciclico</span>.
+              </li>
+              <li>
+                <span class="bold">Valor</span>, sus valores no identifican al elemento en el dataset.
+              </li>
+          </ul>
+        </li>
+        <li>
+          <span class="bold mono">animal_feed</span>
+          <div>Representa la cantidad de kg de CO2 emitidos en esta etapa de producción por cada kg de alimento producido.</div>
+          <ul class="atrr">
+            <li>
+              <span class="bold">Ordenado</span>.
+            </li>
+            <li>
+              <span class="bold">Cuantitativo</span>, sus valores cuentan con un orden intrinseco.
+            </li>
+            <li>
+                <span class="bold">Secuencial</span>, no hay valores negativos.
+              </li>
+              <li>
+                <span class="bold">No ciclico</span>.
+              </li>
+              <li>
+                <span class="bold">Valor</span>, sus valores no identifican al elemento en el dataset.
+              </li>
+          </ul>
+        </li>
+        <li>
+          <span class="bold mono">farm</span>
+          <div>Representa la cantidad de kg de CO2 emitidos en esta etapa de producción por cada kg de alimento producido.</div>
+          <ul class="atrr">
+            <li>
+              <span class="bold">Ordenado</span>.
+            </li>
+            <li>
+              <span class="bold">Cuantitativo</span>, sus valores cuentan con un orden intrinseco.
+            </li>
+            <li>
+                <span class="bold">Secuencial</span>, no hay valores negativos.
+              </li>
+              <li>
+                <span class="bold">No ciclico</span>.
+              </li>
+              <li>
+                <span class="bold">Valor</span>, sus valores no identifican al elemento en el dataset.
+              </li>
+          </ul>
+        </li>
+        <li>
+          <span class="bold mono">processing</span>
+          <div>Representa la cantidad de kg de CO2 emitidos en esta etapa de producción por cada kg de alimento producido.</div>
+          <ul class="atrr">
+            <li>
+              <span class="bold">Ordenado</span>.
+            </li>
+            <li>
+              <span class="bold">Cuantitativo</span>, sus valores cuentan con un orden intrinseco.
+            </li>
+            <li>
+                <span class="bold">Secuencial</span>, no hay valores negativos.
+              </li>
+              <li>
+                <span class="bold">No ciclico</span>.
+              </li>
+              <li>
+                <span class="bold">Valor</span>, sus valores no identifican al elemento en el dataset.
+              </li>
+          </ul>
+        </li>
+        <li>
+          <span class="bold mono">transport</span>
+          <div>Representa la cantidad de kg de CO2 emitidos en esta etapa de producción por cada kg de alimento producido.</div>
+          <ul class="atrr">
+            <li>
+              <span class="bold">Ordenado</span>.
+            </li>
+            <li>
+              <span class="bold">Cuantitativo</span>, sus valores cuentan con un orden intrinseco.
+            </li>
+            <li>
+                <span class="bold">Secuencial</span>, no hay valores negativos.
+              </li>
+              <li>
+                <span class="bold">No ciclico</span>.
+              </li>
+              <li>
+                <span class="bold">Valor</span>, sus valores no identifican al elemento en el dataset.
+              </li>
+          </ul>
+        </li>
+        <li>
+          <span class="bold mono">packging</span>
+          <div>Representa la cantidad de kg de CO2 emitidos en esta etapa de producción por cada kg de alimento producido.</div>
+          <ul class="atrr">
+            <li>
+              <span class="bold">Ordenado</span>.
+            </li>
+            <li>
+              <span class="bold">Cuantitativo</span>, sus valores cuentan con un orden intrinseco.
+            </li>
+            <li>
+                <span class="bold">Secuencial</span>, no hay valores negativos.
+              </li>
+              <li>
+                <span class="bold">No ciclico</span>.
+              </li>
+              <li>
+                <span class="bold">Valor</span>, sus valores no identifican al elemento en el dataset.
+              </li>
+          </ul>
+        </li>
+        <li>
+          <span class="bold mono">retail</span>
+          <div>Representa la cantidad de kg de CO2 emitidos en esta etapa de producción por cada kg de alimento producido.</div>
+          <ul class="atrr">
+            <li>
+              <span class="bold">Ordenado</span>.
+            </li>
+            <li>
+              <span class="bold">Cuantitativo</span>, sus valores cuentan con un orden intrinseco.
+            </li>
+            <li>
+                <span class="bold">Secuencial</span>, no hay valores negativos.
+              </li>
+              <li>
+                <span class="bold">No ciclico</span>.
+              </li>
+              <li>
+                <span class="bold">Valor</span>, sus valores no identifican al elemento en el dataset.
+              </li>
+          </ul>
+        </li>
+
+        <li>
+            <span class="bold mono">total_emissions</span>
+            <div>Representa la cantidad total de kg de CO2 emitidos por cada kg de alimento producido.</div>
+            <ul class="atrr">
+              <li>
+                <span class="bold">Ordenado</span>.
+              </li>
+              <li>
+                <span class="bold">Cuantitativo</span>, sus valores cuentan con un orden intrinseco.
+              </li>
+              <li>
+                  <span class="bold">Secuencial</span>, no hay valores negativos.
+                </li>
+                <li>
+                  <span class="bold">No ciclico</span>.
+                </li>
+                <li>
+                  <span class="bold">Valor</span>, sus valores no identifican al elemento en el dataset.
+                </li>
+            </ul>
+          </li>
+
+          <li>
+            <span class="bold mono">Plant_based</span>
+            <div>Describe si el alimento es en base a plantas o no.</div>
+            <ul class="atrr">
+              <li>
+                <span class="bold">Categórico</span>, los valores son 1 y 0. 1 representa que si es plant based. 0 que no.
+              </li>
+              <li>
+                <span class="bold">Valor</span>, sus valores no identifican al elemento en el dataset.
+              </li>
+            </ul>
+          </li>
+      </ol>
+      <p>
+        Los <span class="bold">datos derivados</span>, son los siguientes:
+      </p>
+      <ol>
+        <li>
+          <span class="bold mono">Etapas del proceso productivo</span>
+          <div>Los nombres de las etapas del proceso productivo, derivados de las columnas del dataset (land use, animal feed, etc).</div>
+          <ul class="atrr">
+            <li>
+              <span class="bold">Categórico</span>
+            </li>
+            <li>
+              <span class="bold">Llave</span>, sus valores si identifican a la etapa.
+            </li>
+          </ul>
+      </ol>
+     
+
+      <h2>Tercer nivel: Codificación visual y de interacción</h2>
+      <p>
+        Para abordar las tareas especificadas, se utilizaron las siguientes 
+        marcas, canales, idioms visuales, idioms de interacción y decisiones 
+        de diseño:
+      </p>
+      <ul>
+
+        <li>
+          <h3>
+            Separación en 2 vistas más una vista de selección</span>
+          </h3>
+            <p>
+            Con el objetivo de tener una visualización del tipo panorámica-detalle, se utilizó una separación en 3 vistas. 
+            La de más a la izquierda corresponde a la vista de selección, donde el usuario puede seleccionar que alimentos quiere visualizar 
+            en las dos vistas restantes. La del medio corresponde a un agrupación de nodos o circulos que representan la huella de carbono total de cada alimento. 
+            La vista de la izquierda corresponde a una gráfico de áreas apiladas. Como "la vista le gana a la memoria" se prefirió utilizar múltiples vistas simultaneas.
+          </p>
+          <p>
+              Esta decisión se relaciona con la <span class="bold">Tarea 1 y Tarea 3</span>, 
+              ya que nos permite presentar la información y explorar los componentes.
+          </p>
+        </li>
+
+        <li>
+            <h3>
+              Filtrar o seleccionar los alimentos que se quieren visualizar</span>
+            </h3>
+              <p>
+              Debido a que hay 43 alimentos, puede ser dificil comparar bien todos al mismo tiempo, 
+              por esto, se da la opción al usuario de seleccionar los alimentos que desea visualizar. Además, debido a la alta cantidad de alimentos, 
+              se puede generar oclusión, sin embargo el filtrado soluciona este problema, cumpliendo así con el principio de efectividad.
+              Para esta selección se consideró mejor utilzar checkboxes, ya que así es más fácil de seleccionar y visualizar la selección.
+            </p>
+            <p>
+                También esta selección incluye 4 botones. 
+                Uno para seleccionar todas las opciones, otro para deseleccionar todas las opciones, 
+                uno para seleccionar solo los alimentos plant based y otro para seleccionar solo los alimentos animal based. 
+                Esto se hizo con el objetivo de faciliar el filtrado, debido a que puede ser dificil seleccionar o deseleccionar 
+                43 alimentos uno por uno. Por otro lado, los botones de animal based y plant based nos permiten comparar de mejor manera 
+                las huellas de carbono de los tipos de alimentos.
+            </p>
+            <p>
+                Esta decisión se relaciona con la <span class="bold">Tarea 2</span>, 
+                nos permite comparar los distintos alimentos.
+            </p>
+          </li>
+
+        <li>
+            <h3>
+              Representación del total de emisiones de CO2 mediante radio (nodos/circulos) </span>
+            </h3>
+              <p>
+              Se decidió representar el total de emisiones de CO2 mediante un circulo o nodo, donde el radio representa la totalidad de emisiones de CO2 del alimento.
+              Este atributo es ordenado por lo que es correcto representarlo mediante el radio. 
+              Se decidió que era la mejor manera para representar el atributo debido a que es user-friendly y permite un alto 
+              grado de interactividad. Además, permite distinguir fácilmente los alimentos que emiten más CO2 en su proceso.
+            </p>
+            <p>
+                Esta decisión se relaciona con la <span class="bold">Tarea 1</span>, 
+                ya que nos permite directamente presentar la cantidad de kg de CO2 emitidos por cada alimento. 
+            </p>
+          </li>
+
+          <li>
+            <h3>
+              Distinción entre tipo de alimento mediante colores distintos</span>
+            </h3>
+              <p>
+              Se decidió representar el tipo de alimento, plant based o animal based mediante un color distinto. 
+              Los alimentos plant based son representados por el color verde, ya que en la vida real la splantas se asocian con este color. 
+              Luego, los alimentos animal based son representado con el color rojo ya que la carne es de este color. 
+              Este atributo, como se mencionó es categórico por lo que es correcto representarlo mediante este canal, además, por los colores consideran el contexto externo por lo que se cumple con el principio de expresividad.
+            </p>
+
+            <p>
+                Esta decisión se relaciona con la <span class="bold">Tarea 2</span>, 
+                ya que nos permite distinguir entre los alimentos plant based y animal based, para más fácilidad para compararlos.
+            </p>
+          </li>
+
+          <li>
+            <h3>
+              Tooltip nodos (circulos)</span>
+            </h3>
+              <p>
+              Cada nodo tiene un tooltip que se puede visualizar cuando se hace hover encima de este. 
+              El tooltip indica el valor del total de emisiones de kg de CO2  por kg del alimento. 
+              Se decidió utilizar este tooltip ya que algunos radios de circulos pueden ser parecidos entre sí y esto nos permite 
+              distinguirlos mejor. Además, sigue el principio de panoramica-detalle ya que a grandes rasgos podemos visualizar que 
+              alimentos emiten más CO2 pero al interactuar con el gráfico podemos ver el detalle de este.
+            </p>
+            <p>
+                Esta decisión se relaciona con la <span class="bold">Tarea 1 y Tarea 2</span>, 
+                ya que nos permite presentar la información y comparar los distintos alimentos.
+            </p>
+          </li>
+
+
+          <li>
+            <h3>
+              Interactivdad nodos</span>
+            </h3>
+              <p>
+                En el contendor de los nodos se puede hacer zoom (in and out), hover (tooltip) y se puede arrastar o "draggear" los nodos. 
+                Esta interactividad ayuda al usuario a comparar visualmente las huellas de carbono de los distintos alimentos. 
+            </p>
+            <p>
+                Esta decisión se relaciona con la <span class="bold">Tarea 2</span>, nos permite comparar mejor los distintos alimentos.
+            </p>
+          </li>
+
+          <li>
+            <h3>
+              Uso de simulación de fuerzas en nodos</span>
+            </h3>
+              <p>
+              Se decidió utilizar una simulación de fuerzas en los nodos, ya que es una herramienta que nos permite posicionar los nodos de manera user-friendly. 
+            </p>
+            <p>
+                Esta decisión se relaciona con la <span class="bold">Tarea 1</span>. Nos permite presentar la información.
+            </p>
+          </li>
+
+
+
+          <li>
+            <h3>
+              Gráfico de áreas apiladas vertical</span>
+            </h3>
+              <p>
+              Se utilizó este idiom para representar las emisiones de CO2 de cada alimento en las distintas etapas productivas ya que el gráfico de áreas apiadas nos permite visualizar distintos atributos de manera resumida.
+              Se decidió un gráfico vertical debido a que hay 43 alimentos, por lo que, 
+              un gráfico horizontal iba a usar mucho espacio en la pantalla. Por otro lado, 
+              el gráfico de áreas apiladas nos permite visualizar las emisiones de CO2 en una escala de posición común.
+            </p>
+            <p>
+                Esta decisioón se relaciona con la <span class="bold">Tarea 2 y Tarea 3</span>, nos permite comparar la información y además visulizar las huellas de CO2 en las distintas etapas productivas.
+            </p>
+          </li>
+
+          <li>
+            <h3>
+              Interactividad y Tooltip gráfico</span>
+            </h3>
+              <p>
+              Al hacer hover sobre las distinas áreas apiladas, se destacan todas las que corresponden a esa etapa del proceso. 
+              Este canal se utilizó para mayor claridad en la comparación entre alimentos. 
+              Además, al hacer hover sobre esta área apilada podemos apreciar un tooltip que indica el valor númerico del atributo, 
+              nuevamente nos permite presentar la información y facilita la comparación al usuario.
+            </p>
+            <p>
+                Esta decisión se relaciona con la <span class="bold">Tarea 1, Tarea 2 y Tarea 3</span>, nos permite presentar la información, comparar los distintos alimentos y explorar las etapas del proceso productivo.
+            </p>
+          </li>
+
+
+
+          <li>
+            <h3>
+              Colores en barras apiladas</span>
+            </h3>
+              <p>
+              Se usó como canal colores distintos para representar los distintos atributos que represetntan las barras apiladas. 
+              Esto facilita la diferenciación entre los procesos productivos.
+              La paleta de colores utilizada corresponden a colores categoricos (d3.schemeSet2) por lo que es correcto para representar las distintas etapas del proceso y se cumple con el principio de expresividad ya que estas son categoricas.
+            </p>
+            <p>
+                Esta decisión se relaciona con la <span class="bold">Tarea 2 y Tarea 3</span>, nos permite comparar mejor y explorar las distintas etapas.
+            </p>
+          </li>
+        
+        
+      </ul>
+      <h2>Algunas consideraciones</h2>
+      <p>En el codigo dejé las referencias que utilicé para elaborar la herramienta. Además, el código y la estructura de este informe está adaptado de <a href="https://puc-infovis.github.io/version-2021/ejemplos/informe2.html">este informe del examen del año pasado.</a></p>
+  </body>
+</html>

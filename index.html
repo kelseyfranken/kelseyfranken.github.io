@@ -1,26 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi sitio web personal</title>
+    <meta charset="utf-8">
+    <title>What are you eating? 🌳</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="styles/index.css">
   </head>
-  <style>
-    body {
-      height: 100vh;
-      margin: 0;
-      background-color: #37474F;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: sans-serif;
-    }
-    h1 {
-      margin: 0;
-    }
-  </style>
-  <body>
-    <h1>¡Hola, mi nombre es KELSEY FRANKEN!</h1>
+
+  <body>    
+    <div class="container">
+      <div class="context">
+      <h2>Food Production and its Carbon Footprint 👣</h2>
+      <text> 
+        It is no mystery that we are beginning to experience a climate crisis. Our lifestyle has exceeded the limits of the planet.
+        Global food production is responsible for more than 26% of Greenhouse Gas emissions worldwide. This visualization provides a more in-depth look at how much Carbon Dioxide is emitted by the production of various common foods.
+        It is important to note that the Carbon Dioxide emissions units are in kg of CO2 per kg of food produced.
+       <a href="https://www.kaggle.com/selfvivek/environment-impact-of-food-production">Data Source</a>
+
+
+
+      </text>
+
+      </text>
+    </div>
+      <div class="row">
+          <div id= 'col0' class="col0">
+              Select which food products you want to visualize: 
+              <div class="button">
+                  <button id="button1-select" type="button">Select All</button>
+              </div>
+              <div class="button">
+                <button id="button2-deselect" type="button">Unselect All</button>
+            </div>
+            <div class="button">
+              <button id="button3-plant" type="button">Only Plant Based</button>
+          </div>
+          <div class="button">
+            <button id="button4-animal" type="button">Only Animal Based</button>
+        </div>
+          </div>
+        <div id= "col1" class="col1">
+       Emissions of CO2 (kg) per kg of food produced
+       <div id="circles-container">
+      </div>
+      <div id="leyenda-nodos" class="leyenda-nodos" >
+        <div class="leyenda-nodos-item">
+       <svg width="20" height="20">
+        <rect width="300" height="100" style="fill:#FF4B24" />
+      </svg>
+      Animal-based food
+        </div>
+
+        <div class="leyenda-nodos-item">
+         <svg width="20" height="20">
+        <rect width="300" height="100" style="fill:#8BD970" />
+        </svg>
+        Plant-based food
+       </div>
+
+       </div>
+        </div>
+        
+        <div id= "col2" class="col2">
+          Emissions of CO2 (kg) per kg of food produced by stage of food production
+        <div id="grafico-apiladas-container">
+        </div>
+        <div class="leyenda-eje-x" >
+          kg CO2 per kg of food produced
+        </div>
+
+
+        <div id="leyenda-apiladas" class="leyenda-apiladas" >
+
+        <div class="leyenda-apiladas-item">
+          <svg width="20" height="20">
+        <rect width="300" height="100" style="fill:#66c2a5" />
+        </svg>
+        Land use
+        </div>
+
+        <div class="leyenda-apiladas-item">
+          <svg width="20" height="20">
+        <rect width="300" height="100" style="fill:#fc8d62" />
+        </svg>
+        Animal Feed
+        </div>
+
+        <div class="leyenda-apiladas-item">
+          <svg width="20" height="20">
+        <rect width="300" height="100" style="fill:#8da0cb" />
+        </svg>
+        Farm
+        </div>
+
+        <div class="leyenda-apiladas-item">
+          <svg width="20" height="20">
+        <rect width="300" height="100" style="fill:#e78ac3" />
+        </svg>
+        Processing
+        </div>
+
+        <div class="leyenda-apiladas-item">
+          <svg width="20" height="20">
+        <rect width="300" height="100" style="fill:#a6d854" />
+        </svg>
+        Transport
+        </div>
+
+        <div class="leyenda-apiladas-item">
+          <svg width="20" height="20">
+        <rect width="300" height="100" style="fill:#ffd92f" />
+        </svg>
+        Packaging
+        </div>
+      
+        <div class="leyenda-apiladas-item">
+          <svg width="20" height="20">
+        <rect width="300" height="100" style="fill:#e5c494" />
+        </svg>
+        Retail
+        </div>
+            
+        </div>
+      </div>
+      <script src='code.js' charset='utf-8'></script>
+    </div>
   </body>
 </html>

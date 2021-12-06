@@ -1,0 +1,91 @@
+body {
+    background-color: #79B4B7;
+    font-family: 'Courier New', Courier, monospace;
+    margin: (0, 0, 0, 0);
+  }
+  .context {
+    padding: 10px;
+  }
+  
+  .row {
+    display: flex;
+    width: 145%;
+    height: 100%;
+    
+    }
+  .col0{
+      flex: 0.08;
+      background-color: white;
+      overflow: scroll;
+      border-radius: 5px;
+      padding: 10px;
+      
+  }
+  .col1 {
+    flex: 0.45;
+    background-color: white;
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 5px;
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    }
+  
+  .col2 {
+    flex: 0.45;
+    background-color: white;
+    margin-right: 1%;
+    border: 1px solid rgb(238, 238, 238);
+    overflow:visible;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    border-radius: 5px;
+    
+  }
+  .leyenda-nodos {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1%;
+    margin-top: -55%;
+    width: 12%;
+    height: 5%;
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+  }
+  button {
+    background-color: #79B4B7;
+    border: 1px solid black;
+    width: 90%;
+    height: 30%;
+    font-size: 8px;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.leyenda-apiladas {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50%;
+    margin-top: -56%;
+    width: 12%;
+    height: 5%;
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+}
+.leyenda-eje-x {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+    margin-top: -3%;
+    width: 30%;
+    height: 5%;
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+
+}
+  
